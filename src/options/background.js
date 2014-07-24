@@ -10,12 +10,36 @@
 //class in option page
 $(window).load(function() 
 {
+  if (localStorage.getItem('apikey') != null) {
+    $('.login').hide();
+    $('.go').hide();
+    $('.status').append('<p style="color:green">todoist: logged in</p>');
+    alarmClock.setup();
+  }
   $( ".go" ).click(function() {
     var usr = $('.email').val();
     var pswd = $('.pswd').val();
     getapikey(usr, pswd);
   });
 });
+
+//class in option page
+function getapikey(username, password) {
+  var url = "https://todoist.com/API/login?password=" + password + "&email=" + username + "&callback=?";
+  $.getJSON(url, function(data) {
+      if (data == "LOGIN_ERROR") {
+        $( ".info" ).append('<p style="color: red;">try again</p>');
+        return;
+      }
+      var apikey = data.api_token;
+      localStorage.setItem('apikey',apikey);
+      $( ".info" ).replaceWith('');
+      $('.login').hide();
+      $('.go').hide();
+      $('.status').append('<p style="color:green">todoist: logged in</p>');
+  });
+  alarmClock.setup();
+}
 
 var alarmClock = {
 
@@ -35,25 +59,4 @@ var alarmClock = {
             var a = document.getElementById('alarmOff');
             a.addEventListener('click',  alarmClock.offHandler );
         }
-  };
-
-
-
-  document.addEventListener('DOMContentLoaded', function () {
-      alarmClock.setup();
-  });
-
-//class in option page
-function getapikey(username, password) {
-  var url = "https://todoist.com/API/login?password=" + password + "&email=" + username + "&callback=?";
-  $.getJSON(url, function(data) {
-      if (data == "LOGIN_ERROR") {
-        $( ".info" ).append('<p style="color: red;">try again</p>');
-        return;
-      }
-      var apikey = data.api_token;
-      localStorage.setItem('apikey',apikey);
-      $( ".info" ).replaceWith('<p style="color: green;">login success</p>');
-  });
-
-}
+};
