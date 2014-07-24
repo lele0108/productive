@@ -28,28 +28,5 @@ function getapikey(username, password) {
       var apikey = data.api_token;
       localStorage.setItem('apikey',apikey);
       $( ".info" ).replaceWith('<p style="color: green;">login success</p>');
-      getp();
   });
-}
-
-//class in alarm.js
-function getp() {
-	var url = "https://todoist.com/API/getProductivityStats?token=" + localStorage.getItem('apikey') + "&callback=?";
-	$.getJSON(url, function(data) {
-    	// Get the element with id summary and set the inner text to the result.
-    	var tasks = data.days_items[0].total_completed;
-      if (localStorage.getItem('tasks') != 0 && localStorage.getItem('tasks') != null && tasks != 0) {
-        var tasks = tasks - parseInt(localStorage.getItem('tasks'));
-        console.log(tasks);
-      }
-      var time = tasks * 20 + parseInt(localStorage.getItem('time'));
-      console.log(time);
-      localStorage.setItem('tasks',tasks);
-      localStorage.setItem('time', time);
-    	alert(localStorage.getItem('time'));
-	});
-}
-
-function track() {
-
 }
