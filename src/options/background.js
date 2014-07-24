@@ -1,13 +1,3 @@
-// if you checked "fancy-settings" in extensionizr.com, uncomment this lines
-
-// var settings = new Store("settings", {
-//     "sample_setting": "This is how you use Store.js to remember values"
-// });
-
-
-//example of using a message handler from the inject scripts
-
-//class in option page
 $(window).load(function() 
 {
   if (localStorage.getItem('apikey') != null) {
@@ -20,6 +10,12 @@ $(window).load(function()
     var usr = $('.email').val();
     var pswd = $('.pswd').val();
     getapikey(usr, pswd);
+  });
+  $( "#logout" ).click(function() {
+    localStorage.removeItem('apikey');
+    $('.login').show();
+    $('.go').show();
+    $('.status').replaceWith('');
   });
 });
 
