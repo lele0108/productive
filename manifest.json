@@ -15,7 +15,7 @@
   ],
   "default_locale": "en",
   "background": {
-    "scripts": ["src/bg/eventPage.js"],
+    "scripts": ["src/bg/jquery.js","src/bg/eventPage.js"],
     "persistent": false
   },
   "options_page": "src/options/index.html",
