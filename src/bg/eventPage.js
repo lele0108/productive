@@ -3,6 +3,7 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
 	$.getJSON(url, function(data) {
     	// Get the element with id summary and set the inner text to the result.
       var tasks = data.days_items[0].total_completed;
+      var date = data.days_items[0].date;
       var time = tasks * 20;
       console.log(time);
       localStorage.setItem('tasks',tasks);
