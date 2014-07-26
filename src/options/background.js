@@ -29,6 +29,8 @@ function getapikey(username, password) {
       }
       var apikey = data.api_token;
       localStorage.setItem('apikey',apikey);
+      var name = data.full_name;
+      localStorage.setItem('name', name);
       $( ".info" ).replaceWith('');
       $('.login').hide();
       $('.go').hide();

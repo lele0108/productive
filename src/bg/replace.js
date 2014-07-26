@@ -27,12 +27,14 @@ function getItems(id, token) {
     }
     for (i in data) {
       var task = "<p>" + data[i].content + "</p>";
-      $('.tasks').append(task);
+      if (i < 5) {
+        $('.tasks').append(task);
+      }
     }
   });
 }
 
 function getInfo() {
   var earned = localStorage.getItem('time');
-  $('.earned').append("You have earned and used " + earned + " minutes.");
+  $('.earned').append("You have earned and used " + earned + " minutes of time.");
 }
