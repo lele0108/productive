@@ -26,6 +26,23 @@ function checkBlock() {
   console.log("allocated time: " + allocated);
   console.log("used time: " + seconds);
   if (seconds > allocated) {
+    var url = chrome.extension.getURL('src/bg/replace.html')
+    chrome.tabs.update(currentTabId, {url: url});
+  }
+}
+
+function checkBlockActive() {
+  var record = localStorage.getItem('sites');
+  var data = JSON.parse(record);
+  var seconds = 0;
+  for (i in data) {
+    seconds = seconds + data[i];
+    console.log(data[i]);
+  }
+  var allocated = parseInt(localStorage.getItem('time')) * 60;
+  console.log("allocated time: " + allocated);
+  console.log("used time: " + seconds);
+  if (seconds > allocated) {
     var trackedSites = localStorage["trackedSites"];
     trackedSites = JSON.parse(trackedSites);
     //console.log(trackedSites);
@@ -354,7 +371,7 @@ function initialize() {
   /* Periodically check to see if we should be clearing stats. */
   window.setInterval(periodicClearStats, 60 * 1000);
 
-  window.setInterval(checkBlock, 120 * 1000);
+  window.setInterval(checkBlockActive, 120 * 1000);
 
   if (!localStorage["sendStatsInterval"]) {
     localStorage["sendStatsInterval"] = 3600 * 1000;
