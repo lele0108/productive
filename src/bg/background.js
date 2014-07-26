@@ -26,7 +26,8 @@ function checkBlock() {
   console.log("allocated time: " + allocated);
   console.log("used time: " + seconds);
   if (seconds > allocated) {
-    alert("you're overtime go do stuff");
+    overtime();
+    pause();
   }
 }
 
