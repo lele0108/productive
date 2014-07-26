@@ -26,8 +26,18 @@ function checkBlock() {
   console.log("allocated time: " + allocated);
   console.log("used time: " + seconds);
   if (seconds > allocated) {
-    var url = chrome.extension.getURL('src/bg/replace.html')
-    chrome.tabs.update(currentTabId, {url: url});
+    var trackedSites = localStorage["trackedSites"];
+    trackedSites = JSON.parse(trackedSites);
+    //console.log(trackedSites);
+    chrome.tabs.get(currentTabId,function(tab) {
+      var tablink = tab.url;
+      for (j in trackedSites) {
+      if (tablink.indexOf(trackedSites[j]) > -1) {
+        var url = chrome.extension.getURL('src/bg/replace.html')
+        chrome.tabs.update(currentTabId, {url: url});
+        }
+      }
+    });
   }
 }
 
