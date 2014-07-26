@@ -13,11 +13,27 @@ var trackerServer = "http://browser-timetracker.appspot.com";
  * @param {string} url The URL of the page, including the protocol.
  * @return {string} The site, including protocol, but not paths.
  */
+
+function checkBlock() {
+  var record = localStorage.getItem('sites');
+  var data = JSON.parse(record);
+  var seconds = 0;
+  for (i in data) {
+    seconds = seconds + data[i];
+    console.log(data[i]);
+  }
+  var allocated = parseInt(localStorage.getItem('time')) * 60;
+  console.log("allocated time: " + allocated);
+  console.log("used time: " + seconds);
+  if (seconds > allocated) {
+    alert("you're overtime go do stuff");
+  }
+}
+
 function getSiteFromUrl(url) {
   var loc = document.createElement('a');
   loc.href = url;
   var match = loc.hostname;
-  console.log("this url is " + match);
   if (match) {
     /* Check the ignored list. */
     var trackedSites = localStorage["trackedSites"];
@@ -93,7 +109,7 @@ function periodicClearStats() {
   var now = new Date();
   if (now.getTime() > nextTimeToClear) {
     console.log("Yes, time to clear stats.");
-    clearStatistics();
+    //clearStatistics();
     nextTimeToClear = new Date(nextTimeToClear + clearStatsInterval * 1000);
     console.log("Next time to clear is " + nextTimeToClear.toString());
     localStorage["nextTimeToClear"] = "" + nextTimeToClear.getTime();
@@ -123,7 +139,7 @@ function updateCounter() {
       }
       var site = getSiteFromUrl(tab.url);
       if (site == null) {
-        console.log("Unable to update counter. Malformed url.");
+        //console.log("Unable to update counter. Malformed url.");
         return;
       }
 
