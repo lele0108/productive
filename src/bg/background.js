@@ -26,8 +26,8 @@ function checkBlock() {
   console.log("allocated time: " + allocated);
   console.log("used time: " + seconds);
   if (seconds > allocated) {
-    overtime();
-    pause();
+    var url = chrome.extension.getURL('src/bg/replace.html')
+    chrome.tabs.update(currentTabId, {url: url});
   }
 }
 
@@ -47,6 +47,7 @@ function getSiteFromUrl(url) {
       if (match.indexOf(trackedSites[i]) > -1) {
       //if (trackedSites[i] == match) {
         console.log("Site is on track list: " + match);
+        checkBlock();
         return match;
       }
     }
@@ -342,6 +343,8 @@ function initialize() {
 
   /* Periodically check to see if we should be clearing stats. */
   window.setInterval(periodicClearStats, 60 * 1000);
+
+  window.setInterval(checkBlock, 120 * 1000);
 
   if (!localStorage["sendStatsInterval"]) {
     localStorage["sendStatsInterval"] = 3600 * 1000;

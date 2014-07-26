@@ -7,6 +7,7 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
       if (date != localStorage.getItem('date')) {
         localStorage.setItem('tasks', 0);
         localStorage.setItem('date', date);
+        localStorage.setItem('sites', '');
       }
       var newtasks = parseInt(tasks) - parseInt(localStorage.getItem('tasks'));
       var time = parseInt(newtasks) * 5;
@@ -14,6 +15,6 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
       localStorage.setItem('time', newtime);
       localStorage.setItem('tasks', tasks);
       localStorage.setItem('date', date);
-      alert(localStorage.getItem('time'));
+      console.log(localStorage.getItem('time'));
 	});
 });
