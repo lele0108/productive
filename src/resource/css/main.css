@@ -56,3 +56,13 @@ body {
 	padding: 5px 20px 5px 20px;
 	border-radius:3px;
 }
+
+.title {
+	margin-top:100px;
+}
+
+.title h1 {
+	font-family: RangerS;
+	color:white;
+	font-size:60px;
+}
