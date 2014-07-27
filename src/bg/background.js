@@ -27,7 +27,7 @@ function checkBlock() {
   localStorage.setItem('usedtime', minutes);
   console.log("allocated time: " + allocated);
   console.log("used time: " + seconds);
-  if (seconds > allocated) {
+  if (seconds >= allocated) {
     var url = chrome.extension.getURL('src/bg/replace.html')
     chrome.tabs.update(currentTabId, {url: url});
   }

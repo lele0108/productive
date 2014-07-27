@@ -8,6 +8,9 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
         var usedtime = localStorage.getItem('usedtime');
         var time = localStorage.getItem('time');
         var newtime = parseInt(time) - parseInt(usedtime);
+        if (newtime < 0) {
+          newtime = 0;
+        }
         localStorage.setItem('time', newtime);
         localStorage.setItem('tasks', 0);
         localStorage.setItem('date', date);
