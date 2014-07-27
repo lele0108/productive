@@ -16,6 +16,7 @@ $(window).load(function()
   });
   $( "#logout" ).click(function() {
     localStorage.removeItem('apikey');
+    chrome.alarms.clear("myAlarm");
     $('.first').show();
     $('.third').hide();
     $('.status').replaceWith('');
@@ -44,6 +45,7 @@ function getapikey(username, password) {
       localStorage.setItem('apikey',apikey);
       var name = data.full_name;
       localStorage.setItem('name', name);
+      chrome.alarms.create("myAlarm", {delayInMinutes: 0.1, periodInMinutes: 5} );
       $('.status').append('<p style="color:green">todoist: logged in</p>');
       $('.second').hide();
       $('.third').show();

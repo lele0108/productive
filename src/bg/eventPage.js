@@ -5,6 +5,10 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
       var tasks = data.days_items[0].total_completed;
       var date = data.days_items[0].date;
       if (date != localStorage.getItem('date')) {
+        var usedtime = localStorage.getItem('usedtime');
+        var time = localStorage.getItem('time');
+        var newtime = parseInt(time) - parseInt(usedtime);
+        localStorage.setItem('time', newtime);
         localStorage.setItem('tasks', 0);
         localStorage.setItem('date', date);
         localStorage.setItem('sites', '');

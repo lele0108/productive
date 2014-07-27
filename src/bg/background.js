@@ -23,6 +23,8 @@ function checkBlock() {
     console.log(data[i]);
   }
   var allocated = parseInt(localStorage.getItem('time')) * 60;
+  var minutes = Math.floor(seconds / 60);
+  localStorage.setItem('usedtime', minutes);
   console.log("allocated time: " + allocated);
   console.log("used time: " + seconds);
   if (seconds > allocated) {
