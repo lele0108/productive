@@ -31,6 +31,10 @@ $(window).load(function()
     var site = $('.site').val();
     addsite(site);
   });
+
+  $("#regularlist").click(function() {
+    regularlist();
+  });
 });
 
 //class in option page
@@ -60,6 +64,11 @@ function addsite(site) {
   whitelist.push(site);
   whitelist = JSON.stringify(whitelist);
   localStorage.setItem('trackedSites', whitelist);
+}
+
+function regularlist() {
+  var list = '["ycombinator.com","facebook.com","reddit.com","youtube.com","twitter.com"]'
+  localStorage.setItem('trackedSites', list);
 }
 
 var alarmClock = {
