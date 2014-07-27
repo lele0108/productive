@@ -1,21 +1,78 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <script type="text/javascript" src="jquery.js"></script>	
-  <script type="text/javascript" src="background.js"></script>
-  <br>
-  <form class="login">
-    <p>Login with your <a href="http://todoist.com">todoist.com</a> details. Login secured with https.</p>
-  	Email: <input type="email" class="email" name="firstname"><br>
-  	Password: <input type="password" class="pswd" name="lastname">
-  	<div class="info"></div>
-  </form>
-  <button class="go">submit</button>
-  <br><br>
-  <div class="status"></div>
-  <p>Options</p>
-  <button href="" id="alarmOn">ACTIVATE</a>
-  <button href="" id="alarmOff">DEACTIVATE</a>
-  <button herf="" id="logout">LOGOUT</a>
-</head>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+    <link href="../resource/css/bootstrap.css" rel="stylesheet">
+    <link href="../resource/css/main.css" rel="stylesheet">
+    <script type="text/javascript" src="jquery.js"></script>	
+    <script type="text/javascript" src="background.js"></script>
+  </head>
+
+  <body>
+
+    <div class="square">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-lg-offset-3">
+
+              <center><h1>HUGO</h1></center><br>
+              <div class="welcome">
+                <div class="first">
+                  <h3>Installation</h3>
+                  <p>Thanks for installing. You're one step closer to becoming super productive on the computer. HUGO is a new focus/website blocking extension that rewards you for completing tasks.</p><br>
+                  <p>Hugo uses <a href="http://todoist.com">Todoist</a> to keep track of your tasks.</p><br><br>
+                  <center>
+                    <p><button class="loginbtn" id="loginscreen">Login</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://todoist.com"><button class="loginbtn">Register</button></a></p>
+                  </center>
+                </div>
+
+                <div class="second">
+                  <h3>Todoist Login</h3>
+                  <p>Login using Todoist details. Credentials are not stored.</p><br>
+
+                  <form class="login">
+                    <input type="email" class="email" name="firstname" width="100%"><br><br>
+                    <input type="password" class="pswd" name="lastname">
+                    <div class="info"></div>
+                  </form><br>
+                  <button class="go">Login</button>
+                </div>
+
+                <div class="third">
+                  <h3>Settings</h3><br>
+                  <div class="status"></div>
+                  <button href="" id="alarmOn">ACTIVATE</button>
+                  <button href="" id="alarmOff">DEACTIVATE</button>
+                  <button herf="" id="logout">LOGOUT</button><br><br>
+                  Add to watch list: <input class="site" name="firstname" width="100%">
+                  <button href="" id="add">ADD</button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--<form class="login">
+      <p>Login with your <a href="http://todoist.com">todoist.com</a> details. Login secured with https.</p>
+    	Email: <input type="email" class="email" name="firstname"><br>
+    	Password: <input type="password" class="pswd" name="lastname">
+    	<div class="info"></div>
+    </form>
+    <button class="go">submit</button>
+    <br><br>
+    <div class="status"></div>
+    <p>Options</p>!-->
+    <div class="hidden" style="display:none">
+    <button href="" id="alarmOn">ACTIVATE</a>
+    <button href="" id="alarmOff">DEACTIVATE</a>
+    <button herf="" id="logout">LOGOUT</a>
+    </div>
+    <script src="../resource/js/bootstrap.min.js"></script>
+  </body>
 </html>

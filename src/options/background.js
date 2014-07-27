@@ -1,8 +1,11 @@
 $(window).load(function() 
-{
+{ 
+  $('.second').hide();
+  $('.third').hide();
   if (localStorage.getItem('apikey') != null) {
-    $('.login').hide();
-    $('.go').hide();
+    $('.first').hide();
+    $('.second').hide();
+    $('.third').show();
     $('.status').append('<p style="color:green">todoist: logged in</p>');
     alarmClock.setup();
   }
@@ -13,9 +16,19 @@ $(window).load(function()
   });
   $( "#logout" ).click(function() {
     localStorage.removeItem('apikey');
-    $('.login').show();
-    $('.go').show();
+    $('.first').show();
+    $('.third').hide();
     $('.status').replaceWith('');
+  });
+
+  $( "#loginscreen" ).click(function() {
+    $('.first').hide();
+    $('.second').toggle();
+  });
+
+  $("#add").click(function() {
+    var site = $('.site').val();
+    addsite(site);
   });
 });
 
@@ -24,19 +37,27 @@ function getapikey(username, password) {
   var url = "https://todoist.com/API/login?password=" + password + "&email=" + username + "&callback=?";
   $.getJSON(url, function(data) {
       if (data == "LOGIN_ERROR") {
-        $( ".info" ).append('<p style="color: red;">try again</p>');
+        $( ".info" ).replaceWith('<p style="color: red;">try again</p>');
         return;
       }
       var apikey = data.api_token;
       localStorage.setItem('apikey',apikey);
       var name = data.full_name;
       localStorage.setItem('name', name);
-      $( ".info" ).replaceWith('');
-      $('.login').hide();
-      $('.go').hide();
       $('.status').append('<p style="color:green">todoist: logged in</p>');
+      $('.second').hide();
+      $('.third').show();
   });
   alarmClock.setup();
+}
+
+function addsite(site) {
+  alert(site + " added");
+  var whitelist = localStorage.getItem('trackedSites');
+  whitelist = JSON.parse(whitelist);
+  whitelist.push(site);
+  whitelist = JSON.stringify(whitelist);
+  localStorage.setItem('trackedSites', whitelist);
 }
 
 var alarmClock = {

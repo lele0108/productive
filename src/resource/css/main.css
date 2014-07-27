@@ -1,0 +1,58 @@
+@font-face {
+    font-family: Ranger;
+    src: url('../fonts/Ranger_Italic.ttf');
+}
+
+@font-face {
+    font-family: RangerS;
+    src: url('../fonts/Ranger_Italic_Shadow.ttf');
+}
+
+body {
+	background-color: #379CDC;
+}
+
+.square {
+	margin-top:100px;
+}
+
+.square h1 {
+	font-family: RangerS;
+	color:white;
+	font-size:60px;
+}
+
+.welcome {
+	background-color:white;
+	border-radius:5px;
+	padding: 25px 20px 25px 20px;
+}
+
+.welcome a {
+	color:orange;
+}
+
+.welcome h3 {
+	font-weight:300;
+	margin-top:0px;
+}
+
+.loginbtn {
+	color:orange;
+	background-color:#fff;
+	border: 2px solid orange;
+	padding: 5px 20px 5px 20px;
+	border-radius:3px;
+}
+
+.loginbtn:hover {
+	opacity:0.7;
+}
+
+.go {
+	color:orange;
+	background-color:#fff;
+	border: 2px solid orange;
+	padding: 5px 20px 5px 20px;
+	border-radius:3px;
+}
