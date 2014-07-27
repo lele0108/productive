@@ -1,5 +1,4 @@
-![Hugo](https://raw.githubusercontent.com/lele0108/productive/master/icons/icon128.png)
-HUGO
+![Hugo](https://raw.githubusercontent.com/lele0108/productive/master/icons/icon128.png) HUGO
 ==========
 
 HUGO is a chrome extension that acts as a practive focus campanion.
