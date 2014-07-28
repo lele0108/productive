@@ -29,9 +29,9 @@ var trackerServer = "http://browser-timetracker.appspot.com";
         var totalTime = localStorage.getItem('time');
         totalTime = goodTime + parseInt(totalTime);
         localStorage.setItem('time', totalTime);
-        siteObject[i] = 0;
-        siteObject = JSON.stringify(siteObject);
-        localStorage.setItem('goodSites', siteObject);
+        viewedSites[i] = 0;
+        viewedSites = JSON.stringify(viewedSites);
+        localStorage.setItem('sites', viewedSites);
       }
     }
   }
@@ -40,11 +40,23 @@ var trackerServer = "http://browser-timetracker.appspot.com";
 function checkBlock() {
   var record = localStorage.getItem('sites');
   var data = JSON.parse(record);
+  var siteList = localStorage.getItem('trackedSites');
+  siteList = JSON.parse(siteList);
+  var goodList = localStorage.getItem('goodSites');
+  goodList = JSON.parse(goodList);
+  var goodTime = 0;
+  for (i in data) {
+    if (i.indexOf(goodList) > -1) {
+      goodTime = goodTime + data[i];
+    }
+  }
+  console.log("Productive time used " + goodTime);
   var seconds = 0;
   for (i in data) {
     seconds = seconds + data[i];
     console.log(data[i]);
   }
+  seconds = seconds - goodTime;
   var allocated = parseInt(localStorage.getItem('time')) * 60;
   var minutes = Math.floor(seconds / 60);
   localStorage.setItem('usedtime', minutes);
