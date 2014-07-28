@@ -20,14 +20,18 @@ var trackerServer = "http://browser-timetracker.appspot.com";
   var viewedSites = localStorage.getItem('sites');
   viewedSites = JSON.parse(viewedSites);
   for (i in viewedSites) {
-    console.log(i);
-    if (siteObject.indexOf(i) > -1) {
-      var goodTime = viewedSites[i];
+    if (i.indexOf(siteObject) > -1) {
+      var goodTime = parseInt(viewedSites[i]) / 4;
+      console.log(goodTime);
       goodTime = Math.round(parseInt(goodTime) / 60);
+      console.log(goodTime);
       if (goodTime > 0) {
         var totalTime = localStorage.getItem('time');
         totalTime = goodTime + parseInt(totalTime);
         localStorage.setItem('time', totalTime);
+        siteObject[i] = 0;
+        siteObject = JSON.stringify(siteObject);
+        localStorage.setItem('goodSites', siteObject);
       }
     }
   }
@@ -86,16 +90,28 @@ function getSiteFromUrl(url) {
   if (match) {
     /* Check the ignored list. */
     var trackedSites = localStorage["trackedSites"];
+    var goodSites = localStorage.getItem('goodSites');
     if (!trackedSites) {
       trackedSites = [];
     } else {
       trackedSites = JSON.parse(trackedSites);
+    }
+    if (!goodSites) {
+      goodSites = [];
+    } else {
+      goodSites = JSON.parse(goodSites);
     }
     for (i in trackedSites) {
       if (match.indexOf(trackedSites[i]) > -1) {
       //if (trackedSites[i] == match) {
         console.log("Site is on track list: " + match);
         checkBlock();
+        return match;
+      }
+    }
+    for (i in goodSites) {
+      if (match.indexOf(goodSites[i]) > -1) {
+        console.log("You are getting rewarded for being on: " + match) 
         return match;
       }
     }
