@@ -14,6 +14,25 @@ var trackerServer = "http://browser-timetracker.appspot.com";
  * @return {string} The site, including protocol, but not paths.
  */
 
+ function checkProductive() {
+  var siteObject = localStorage.getItem('goodSites');
+  siteObject = JSON.parse(siteObject);
+  var viewedSites = localStorage.getItem('sites');
+  viewedSites = JSON.parse(viewedSites);
+  for (i in viewedSites) {
+    console.log(i);
+    if (siteObject.indexOf(i) > -1) {
+      var goodTime = viewedSites[i];
+      goodTime = Math.round(parseInt(goodTime) / 60);
+      if (goodTime > 0) {
+        var totalTime = localStorage.getItem('time');
+        totalTime = goodTime + parseInt(totalTime);
+        localStorage.setItem('time', totalTime);
+      }
+    }
+  }
+ }
+
 function checkBlock() {
   var record = localStorage.getItem('sites');
   var data = JSON.parse(record);
@@ -374,6 +393,8 @@ function initialize() {
   window.setInterval(periodicClearStats, 60 * 1000);
 
   window.setInterval(checkBlockActive, 120 * 1000);
+
+  window.setInterval(checkProductive, 300000);
 
   if (!localStorage["sendStatsInterval"]) {
     localStorage["sendStatsInterval"] = 3600 * 1000;
